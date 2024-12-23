@@ -27,8 +27,11 @@ class GameController extends ChangeNotifier {
     await sfxPLayer2.play(AssetSource('audio/tap.mp3'));
   }
 
+  bool twov2SoundPlaying = false;
   twov2Sound() async {
+    if (twov2SoundPlaying) return;
     await bgplayer.play(AssetSource('audio/2v2.mp3'));
+    twov2SoundPlaying = true;
   }
 
   Offset? tapPosition; // The user's tap position
@@ -79,6 +82,7 @@ class GameController extends ChangeNotifier {
   bool nextRound = false;
 
   bool gunShot = false;
+  bool showBomb = false;
 
   Future checkTap(Offset tapPos) async {
     gunShot = true;
@@ -118,6 +122,13 @@ class GameController extends ChangeNotifier {
 
       if (players.length == 1) {
         controllerCenter?.play();
+
+        // await Future.delayed(const Duration(seconds: 7));
+        // showBomb = true;
+        // notifyListeners();
+        // await Future.delayed(const Duration(seconds: 3));
+        // showBomb = false;
+        // notifyListeners();
         return;
       }
 

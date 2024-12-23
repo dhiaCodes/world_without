@@ -16,12 +16,6 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    GameController gameController = context.read<GameController>();
-
-    // Set an initial random point when the app starts
-    Future.microtask(() {
-      gameController.initSound();
-    });
   }
 
   @override
@@ -167,7 +161,12 @@ class _HomePageState extends State<HomePage> {
                                         ),
                                         DefaultButton(
                                           text: "Start",
-                                          onTap: () {
+                                          onTap: () async {
+                                            GameController gameController =
+                                                context.read<GameController>();
+
+                                            gameController.initSound();
+
                                             Navigator.push(context,
                                                 MaterialPageRoute(
                                                     builder: (context) {
