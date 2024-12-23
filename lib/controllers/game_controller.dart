@@ -49,11 +49,11 @@ class GameController extends ChangeNotifier {
     notifyListeners();
   }
 
-  void init() {
+  void init(BuildContext context) {
     playersPoints.clear();
     players.clear();
 
-    playersPoints = _generateInitialPLayersPoints(playersCount);
+    playersPoints = _generateInitialPLayersPoints(context, playersCount);
     for (int i = 0; i < playersPoints.length; i++) {
       players
           .add(Player(id: i, name: 'Player ${i + 1}', pos: playersPoints[i]));
@@ -151,13 +151,14 @@ class GameController extends ChangeNotifier {
   ConfettiController? controllerCenter;
 }
 
-List<Offset> _generateInitialPLayersPoints(int count) {
+List<Offset> _generateInitialPLayersPoints(BuildContext context, int count) {
+  final size = MediaQuery.of(context).size;
   // Generate a random position for the initial point
   final List<Offset> list = <Offset>[];
 
   for (int i = 0; i < count; i++) {
-    list.add(Offset(
-        math.Random().nextDouble() * 700, math.Random().nextDouble() * 300));
+    list.add(Offset(math.Random().nextDouble() * size.width * 0.8,
+        math.Random().nextDouble() * size.height * 0.8));
   }
 
   log('Initial points: $list');

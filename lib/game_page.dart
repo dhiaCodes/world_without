@@ -27,7 +27,7 @@ class _GamePageState extends State<GamePage> {
 
     // Set an initial random point when the app starts
     Future.microtask(() {
-      gameController.init();
+      gameController.init(context);
     });
     gameController.controllerCenter =
         ConfettiController(duration: const Duration(seconds: 3));
