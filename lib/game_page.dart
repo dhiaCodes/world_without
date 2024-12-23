@@ -248,7 +248,7 @@ class _GamePageState extends State<GamePage> {
             Text(
               "${player.name} - the winner",
               style: const TextStyle(
-                fontSize: 8,
+                fontSize: 16,
                 color: Colors.white,
                 shadows: [
                   Shadow(
@@ -261,7 +261,7 @@ class _GamePageState extends State<GamePage> {
             ),
             Image.asset(
               "assets/sqlett.gif",
-              height: 75,
+              height: 125,
             ),
           ],
         ),
